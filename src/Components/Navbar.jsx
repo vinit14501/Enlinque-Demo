@@ -13,6 +13,9 @@ const Navbar = () => {
     { label: "FractionalCxO", to: "/fractionalCxO" },
     { label: "FractionalCxO2", to: "/fractionalCxO2" },
     { label: "FractionalCxO3", to: "/fractionalCxO3" },
+    { label: "Services", to: "/services" },
+    { label: "Services2", to: "/services2" },
+    { label: "Services3", to: "/services3" },
   ]
 
   const toggleMenu = () => {

@@ -7,6 +7,9 @@ import ContactPage from "./pages/ContactPage"
 import FractionalCxoPage from "./pages/FractionalCxoPage"
 import FractionalCxoPage2 from "./pages/FractionalCxoPage2"
 import FractionalCxoPage3 from "./pages/FractionalCxoPage3"
+import ServicesPage from "./pages/ServicesPage"
+import ServicesPage2 from "./pages/ServicesPage2"
+import ServicesPage3 from "./pages/ServicesPage3"
 
 export default function App() {
   return (
@@ -38,6 +41,18 @@ export default function App() {
             <Route
               path="/fractionalCxO3"
               element={<FractionalCxoPage3 />}
+            />
+            <Route
+              path="/services"
+              element={<ServicesPage />}
+            />
+            <Route
+              path="/services2"
+              element={<ServicesPage2 />}
+            />
+            <Route
+              path="/services3"
+              element={<ServicesPage3 />}
             />
           </Routes>
         </main>
