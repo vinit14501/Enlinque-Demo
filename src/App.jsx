@@ -3,9 +3,10 @@ import Navbar from "./Components/Navbar"
 import Footer from "./Components/Footer"
 import HomePage from "./pages/HomePage"
 import AboutPage from "./pages/AboutPage"
-import AboutPage2 from "./pages/AboutPage2"
 import ContactPage from "./pages/ContactPage"
-import ContactPage2 from "./pages/ContactPage2"
+import FractionalCxoPage from "./pages/FractionalCxoPage"
+import FractionalCxoPage2 from "./pages/FractionalCxoPage2"
+import FractionalCxoPage3 from "./pages/FractionalCxoPage3"
 
 export default function App() {
   return (
@@ -23,16 +24,20 @@ export default function App() {
               element={<AboutPage />}
             />
             <Route
-              path="/about2"
-              element={<AboutPage2 />}
-            />
-            <Route
               path="/contact"
               element={<ContactPage />}
             />
             <Route
-              path="/contact2"
-              element={<ContactPage2 />}
+              path="/fractionalCxO"
+              element={<FractionalCxoPage />}
+            />
+            <Route
+              path="/fractionalCxO2"
+              element={<FractionalCxoPage2 />}
+            />
+            <Route
+              path="/fractionalCxO3"
+              element={<FractionalCxoPage3 />}
             />
           </Routes>
         </main>

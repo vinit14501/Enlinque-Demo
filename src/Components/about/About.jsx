@@ -1,67 +1,6 @@
 import { motion } from "framer-motion"
-import {
-  FaCheckCircle, // Integrity
-  FaLightbulb, // Innovation
-  FaHandshake, // Collaboration
-  FaRocket, // Growth - replaced FaRocketLaunch
-} from "react-icons/fa"
 
 const About = () => {
-  // Animations
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5 },
-    },
-  }
-
-  // Company Values
-  const values = [
-    {
-      icon: FaCheckCircle,
-      title: "Integrity",
-      description:
-        "We uphold the highest standards of honesty and transparency.",
-    },
-    {
-      icon: FaLightbulb,
-      title: "Innovation",
-      description: "Creativity and forward-thinking drive our solutions.",
-    },
-    {
-      icon: FaHandshake,
-      title: "Collaboration",
-      description: "We believe in the power of teamwork and mutual respect.",
-    },
-    {
-      icon: FaRocket,
-      title: "Growth",
-      description:
-        "Continuous learning and improvement are our core principles.",
-    },
-  ]
-
-  // Milestones
-  const milestones = [
-    { year: 2015, event: "Company Founded" },
-    { year: 2018, event: "First Major Client Project" },
-    { year: 2020, event: "Expanded to International Markets" },
-    { year: 2022, event: "Innovation Award Received" },
-  ]
-
   return (
     <div className="min-h-screen bg-white text-gray-800 font-sans">
       {/* Header Section */}
@@ -76,88 +15,119 @@ const About = () => {
           initial={{ y: -50 }}
           animate={{ y: 0 }}
         >
-          Who We Are
+          About Us
         </motion.h1>
         <motion.p
-          className="text-xl font-light text-gray-600"
+          className="text-xl font-light text-gray-600 mb-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          Innovation Meets Excellence
+          Where Speed Meets Strategy
+        </motion.p>
+        <motion.p
+          className="text-lg font-light text-gray-700 max-w-2xl mx-auto px-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+        >
+          Empowering startups and businesses to overcome challenges and achieve
+          rapid growth through tailored IT and marketing consulting services
         </motion.p>
       </motion.header>
 
-      {/* Main Content */}
-      <motion.div
-        className="container mx-auto px-4 py-12 grid md:grid-cols-2 gap-8"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {/* Left Column: Our Journey */}
-        <motion.div variants={itemVariants}>
-          <h2 className="text-3xl font-semibold font-poppins mb-6">
-            Our Journey
-          </h2>
-          <p className="text-gray-700 mb-6">
-            Founded with a vision to transform challenges into opportunities,
-            our company has been at the forefront of technological innovation
-            and strategic problem-solving.
-          </p>
-
-          <div className="space-y-4">
-            {milestones.map((milestone, index) => (
-              <div
-                key={index}
-                className="p-4 border-l-4 border-blue-500 bg-gray-50 rounded-r-md shadow-sm"
-              >
-                <h3 className="text-xl font-bold text-gray-900">
-                  {milestone.year}
-                </h3>
-                <p className="text-gray-600">{milestone.event}</p>
-              </div>
-            ))}
+      {/* Half and Half Section */}
+      <div className="flex flex-col md:flex-row">
+        {/* Left Side - Photo Collage */}
+        <motion.div
+          className="w-full md:w-1/2 bg-gray-100 p-8 flex items-center justify-center"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="grid grid-cols-4 grid-rows-3 gap-4 max-w-[600px] w-full h-[400px]">
+            <div className="col-span-2 row-span-2">
+              <img
+                src="hero1.jpg"
+                alt="IT Consulting"
+                className="w-full h-full object-cover rounded-lg shadow-md"
+              />
+            </div>
+            <div className="col-span-2 row-span-1">
+              <img
+                src="hero2.jpg"
+                alt="Marketing Strategy"
+                className="w-full h-full object-cover rounded-lg shadow-md"
+              />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <img
+                src="hero3.jpg"
+                alt="Business Transformation"
+                className="w-full h-full object-cover rounded-lg shadow-md"
+              />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <img
+                src="hero4.jpg"
+                alt="Digital Solutions"
+                className="w-full h-full object-cover rounded-lg shadow-md"
+              />
+            </div>
+            <div className="col-span-2 row-span-1">
+              <img
+                src="hero1.jpg"
+                alt="Team Collaboration"
+                className="w-full h-full object-cover rounded-lg shadow-md"
+              />
+            </div>
+            <div className="col-span-2 row-span-1">
+              <img
+                src="hero1.jpg"
+                alt="Team Collaboration"
+                className="w-full h-full object-cover rounded-lg shadow-md"
+              />
+            </div>
           </div>
         </motion.div>
 
-        {/* Right Column: Our Values */}
-        <motion.div variants={itemVariants}>
-          <h2 className="text-3xl font-semibold font-poppins mb-6">
-            Our Values
-          </h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            {values.map((value, index) => (
-              <motion.div
-                key={index}
-                className="bg-white p-6 rounded-lg shadow-md text-center"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <value.icon className="mx-auto text-4xl text-blue-600 mb-4" />
-                <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                <p className="text-gray-600">{value.description}</p>
-              </motion.div>
-            ))}
+        {/* Right Side - Company Description */}
+        <motion.div
+          className="w-full md:w-1/2 p-12 flex flex-col justify-center"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <div className="max-w-[500px] mx-auto">
+            <p className="text-lg text-gray-700 mb-6">
+              Headquartered in Pittsburgh, PA, USA, we proudly collaborate with
+              clients around the globe, ensuring seamless communication and
+              impactful results.
+            </p>
+            <p className="text-lg text-gray-700 mb-6">
+              Driven by a commitment to excellence, agility, and collaboration,
+              we believe in turning ambitious ideas into actionable results.
+              With our expertise in IT infrastructure, speed-to-market
+              strategies, and ROI-driven marketing, we help businesses unlock
+              their potential and thrive in competitive markets.
+            </p>
+            <p className="text-xl font-semibold text-blue-600 italic">
+              At Enlinque, your vision is our mission.
+            </p>
           </div>
         </motion.div>
-      </motion.div>
+      </div>
 
-      {/* Call to Action */}
+      {/* Final Section */}
       <motion.div
         className="bg-blue-600 text-white text-center py-16"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
+        transition={{ delay: 0.5 }}
       >
-        <h2 className="text-4xl font-bold mb-6">Want to partner with us?</h2>
-        <motion.button
-          className="bg-white text-blue-600 px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-100"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          Explore Our Services
-        </motion.button>
+        <h2 className="text-4xl font-bold mb-4 px-4">
+          Connecting Vision to Success with IT and Marketing Solutions
+        </h2>
       </motion.div>
     </div>
   )

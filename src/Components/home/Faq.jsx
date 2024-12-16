@@ -64,23 +64,47 @@ const FAQItem = ({ title, content, isOpen, onToggle }) => {
 }
 
 export default function Faq() {
-  const [openIndex, setOpenIndex] = useState(0)
+  // Commented out to remove auto-opening of first FAQ
+  // const [openIndex, setOpenIndex] = useState(0)
+  const [openIndex, setOpenIndex] = useState(-1)
 
   const faqData = [
     {
-      title: "What services do we offer?",
+      title: "What services does Enlinque offer?",
       content:
-        "We provide comprehensive digital solutions tailored to meet your business needs, including web development, mobile app design, cloud computing, and innovative tech consulting.",
+        "Enlinque provides IT consulting, marketing consulting, e-commerce solutions,  speed-to-market solutions tailored for startups and businesses in various industries to name a few.",
     },
     {
-      title: "How do we ensure project quality?",
+      title: "Do you only work with startups?",
       content:
-        "Our team follows a rigorous quality assurance process, including multiple review stages, continuous testing, and agile methodology to deliver top-notch solutions that exceed client expectations.",
+        "No, while we specialize in helping startups and provide fractional CxO services, we also work with businesses of all sizes and industries to address their IT and marketing needs.",
     },
     {
-      title: "What is our project timeline?",
+      title:
+        "Where are you located, and do you work with international clients?",
       content:
-        "Project timelines vary depending on complexity, but we pride ourselves on efficient delivery. Typically, we provide a detailed project roadmap with clear milestones and transparent communication throughout the development process.",
+        "Enlinque is headquartered in Pittsburgh, PA, USA, and partners with clients worldwide, ensuring smooth communication and effective collaboration across borders.",
+    },
+    {
+      title:
+        "Can you help us choose the right technology stack for our startup?",
+      content:
+        "Yes, we analyze your business needs and recommend the most suitable, scalable, and cost-effective technology stack to support your growth.",
+    },
+    {
+      title: "What marketing consulting services do you provide?",
+      content:
+        "We offer comprehensive marketing consulting, including growth strategy development, ROI-focused campaigns, content marketing, SEO, digital advertising, and performance analytics. Our goal is to build and execute tailored strategies that drive measurable results, such as increased traffic, conversions, and customer retention.",
+    },
+    {
+      title: "How does your consulting process work?",
+      content:
+        "We follow a proven success path: Pinpoint, Prioritize, Plan, Propel, and Perfect. This ensures clarity, alignment, and tangible results at every stage.",
+    },
+    {
+      title: "What industries do you specialize in?",
+      content:
+        "We have experience working with e-commerce, technology, healthcare, and various other industries, but we adapt to the needs of any business.",
     },
   ]
 

@@ -9,9 +9,10 @@ const Navbar = () => {
   const navItems = [
     { label: "Home", to: "/" },
     { label: "About", to: "/about" },
-    { label: "About 2", to: "/about2" },
     { label: "Contact", to: "/contact" },
-    { label: "Contact 2", to: "/contact2" },
+    { label: "FractionalCxO", to: "/fractionalCxO" },
+    { label: "FractionalCxO2", to: "/fractionalCxO2" },
+    { label: "FractionalCxO3", to: "/fractionalCxO3" },
   ]
 
   const toggleMenu = () => {

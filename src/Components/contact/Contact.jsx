@@ -3,18 +3,22 @@ import { motion } from "framer-motion"
 import {
   FaUser,
   FaEnvelope,
-  FaEdit,
+  FaPhone,
   FaComment,
-  FaFacebook,
-  FaTwitter,
+  FaMapMarkerAlt,
   FaLinkedin,
-  FaInstagram,
+  FaTwitter,
+  FaGithub,
+  FaBuilding,
+  FaHeadset,
 } from "react-icons/fa"
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    fullName: "",
+    emailAddress: "",
+    companyName: "",
+    phoneNumber: "",
     subject: "",
     message: "",
   })
@@ -29,226 +33,172 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // TODO: Implement form submission logic
     console.log(formData)
   }
 
-  // Container animation
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.2,
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  // Item animation
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  }
-
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-      className="min-h-screen bg-white flex flex-col md:flex-row p-4 md:p-8 lg:p-12"
-    >
-      {/* Left Column - Contact Form */}
-      <motion.div
-        variants={itemVariants}
-        className="w-full md:w-1/2 p-4 md:p-8"
-      >
-        <motion.h2
-          variants={itemVariants}
-          className="text-3xl font-bold text-gray-800 mb-6"
+    <div className="min-h-screen w-full bg-gray-50 flex items-center justify-center px-4 py-12">
+      <div className="container mx-auto max-w-6xl">
+        <motion.div
+          className="grid md:grid-cols-2 bg-white shadow-2xl rounded-2xl overflow-hidden"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: 0.5,
+            ease: "easeOut",
+          }}
         >
-          Contact Us
-        </motion.h2>
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-4"
-        >
-          {/* Name Input */}
-          <motion.div
-            variants={itemVariants}
-            className="relative"
-          >
-            <FaUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-            <motion.input
-              whileFocus={{
-                scale: 1.02,
-                boxShadow: "0 0 0 3px rgba(45, 170, 160, 0.3)",
-              }}
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-300"
-              required
-            />
-          </motion.div>
+          {/* Left Side - Contact Information */}
+          <div className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-12 flex flex-col justify-center">
+            <h2 className="text-3xl font-bold mb-6">Contact Us</h2>
+            <p className="text-lg mb-8 text-white/90">
+              We&apos;re here to help your business thrive. Let&apos;s connect
+              and start building success together.
+            </p>
 
-          {/* Email Input */}
-          <motion.div
-            variants={itemVariants}
-            className="relative"
-          >
-            <FaEnvelope className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-            <motion.input
-              whileFocus={{
-                scale: 1.02,
-                boxShadow: "0 0 0 3px rgba(45, 170, 160, 0.3)",
-              }}
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-300"
-              required
-            />
-          </motion.div>
+            <div className="space-y-4">
+              {[
+                {
+                  icon: FaMapMarkerAlt,
+                  title: "Address",
+                  description: "123 Innovation Drive, Tech City",
+                },
+                {
+                  icon: FaPhone,
+                  title: "Phone",
+                  description: "+1 (555) 123-4567",
+                },
+                {
+                  icon: FaEnvelope,
+                  title: "Email",
+                  description: "contact@innovate.com",
+                },
+              ].map(({ icon: Icon, title, description }) => (
+                <div
+                  key={title}
+                  className="flex items-center space-x-4"
+                >
+                  <Icon className="text-2xl" />
+                  <div>
+                    <h4 className="font-semibold">{title}</h4>
+                    <p className="text-sm text-white/80">{description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-          {/* Subject Input */}
-          <motion.div
-            variants={itemVariants}
-            className="relative"
-          >
-            <FaEdit className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-            <motion.select
-              whileFocus={{
-                scale: 1.02,
-                boxShadow: "0 0 0 3px rgba(45, 170, 160, 0.3)",
-              }}
-              name="subject"
-              value={formData.subject}
-              onChange={handleChange}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-300"
-              required
+            <div className="mt-8 flex space-x-4">
+              {[FaLinkedin, FaTwitter, FaGithub].map((SocialIcon, index) => (
+                <motion.a
+                  key={index}
+                  href="#"
+                  whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 0.3 },
+                  }}
+                  className="text-2xl hover:text-blue-200"
+                >
+                  <SocialIcon />
+                </motion.a>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Side - Contact Form */}
+          <div className="p-12">
+            <h3 className="text-2xl font-bold mb-6 text-gray-800">
+              Send us a Message
+            </h3>
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-6"
             >
-              <option value="">Select Subject</option>
-              <option value="general">General Inquiry</option>
-              <option value="support">Support</option>
-              <option value="sales">Sales</option>
-            </motion.select>
-          </motion.div>
+              {[
+                {
+                  name: "fullName",
+                  type: "text",
+                  placeholder: "Your Full Name",
+                  icon: FaUser,
+                },
+                {
+                  name: "emailAddress",
+                  type: "email",
+                  placeholder: "Your Email Address",
+                  icon: FaEnvelope,
+                },
+                {
+                  name: "companyName",
+                  type: "text",
+                  placeholder: "Your Company Name",
+                  icon: FaBuilding,
+                },
+                {
+                  name: "phoneNumber",
+                  type: "tel",
+                  placeholder: "Your Phone Number",
+                  icon: FaPhone,
+                },
+              ].map(({ name, type, placeholder, icon: Icon }) => (
+                <div
+                  key={name}
+                  className="relative"
+                >
+                  <Icon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                  <input
+                    type={type}
+                    name={name}
+                    value={formData[name]}
+                    onChange={handleChange}
+                    placeholder={placeholder}
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              ))}
 
-          {/* Message Textarea */}
-          <motion.div
-            variants={itemVariants}
-            className="relative"
-          >
-            <FaComment className="absolute left-3 top-4 text-gray-400" />
-            <motion.textarea
-              whileFocus={{
-                scale: 1.02,
-                boxShadow: "0 0 0 3px rgba(45, 170, 160, 0.3)",
-              }}
-              name="message"
-              placeholder="Your Message"
-              value={formData.message}
-              onChange={handleChange}
-              rows="4"
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-300"
-              required
-            />
-          </motion.div>
+              <div className="relative">
+                <FaHeadset className="absolute left-3 top-4 text-gray-400" />
+                <select
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-600"
+                >
+                  <option value="">Select Subject</option>
+                  <option value="IT Consulting">IT Consulting</option>
+                  <option value="Marketing Consulting">
+                    Marketing Consulting
+                  </option>
+                  <option value="E-Commerce">E-Commerce</option>
+                  <option value="Custom Solution">Custom Solution</option>
+                  <option value="General Inquiry">General Inquiry</option>
+                </select>
+              </div>
 
-          {/* Submit Button */}
-          <motion.button
-            variants={itemVariants}
-            whileHover={{
-              scale: 1.05,
-              transition: { duration: 0.3 },
-            }}
-            whileTap={{ scale: 0.95 }}
-            type="submit"
-            className="w-full bg-teal-500 text-white py-3 rounded-lg hover:bg-teal-600 transition duration-300 ease-in-out transform"
-          >
-            Send Message
-          </motion.button>
-        </form>
-      </motion.div>
+              <div className="relative">
+                <FaComment className="absolute left-3 top-4 text-gray-400" />
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Your Message"
+                  rows={4}
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
 
-      {/* Right Column - Contact Details */}
-      <motion.div
-        variants={itemVariants}
-        className="w-full md:w-1/2 p-4 md:p-8 bg-gray-50 rounded-lg"
-      >
-        <motion.div
-          variants={itemVariants}
-          className="mb-6"
-        >
-          <motion.h3
-            variants={itemVariants}
-            className="text-2xl font-bold text-gray-800 mb-4"
-          >
-            Contact Information
-          </motion.h3>
-          <motion.p
-            variants={itemVariants}
-            className="text-gray-600 mb-2"
-          >
-            <strong>Address:</strong> 123 Main St, City, State
-          </motion.p>
-          <motion.p
-            variants={itemVariants}
-            className="text-gray-600 mb-2"
-          >
-            <strong>Phone:</strong> +1 (555) 123-4567
-          </motion.p>
-          <motion.p
-            variants={itemVariants}
-            className="text-gray-600 mb-2"
-          >
-            <strong>Email:</strong> info@enlinque.com
-          </motion.p>
-        </motion.div>
-
-        {/* Social Media Icons */}
-        <motion.div
-          variants={itemVariants}
-          className="flex space-x-4 mb-6"
-        >
-          {[FaFacebook, FaTwitter, FaLinkedin, FaInstagram].map(
-            (Icon, index) => (
-              <motion.a
-                key={index}
-                href="#"
-                whileHover={{
-                  scale: 1.2,
-                  color: "#2DAAA0",
-                }}
-                whileTap={{ scale: 0.9 }}
-                className="text-gray-700 hover:text-teal-500 transition duration-300"
+              <motion.button
+                type="submit"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
               >
-                <Icon size={24} />
-              </motion.a>
-            )
-          )}
+                Send Message
+              </motion.button>
+            </form>
+          </div>
         </motion.div>
-
-        {/* Embedded Map (Placeholder) */}
-        <motion.div
-          variants={itemVariants}
-          className="bg-gray-200 rounded-lg h-64 flex items-center justify-center text-gray-500"
-        >
-          Google Maps Placeholder
-        </motion.div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   )
 }
 
