@@ -50,7 +50,7 @@ const Services = () => {
           {servicesSections.map((section) => (
             <div
               key={section.title}
-              className="bg-white rounded-xl shadow-lg p-6 transform transition-all duration-300 hover:scale-105"
+              className="bg-white shadow-lg p-6 transform transition-all duration-300 hover:scale-105"
             >
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-gray-800 mb-2">

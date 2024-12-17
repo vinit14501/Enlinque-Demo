@@ -1,179 +1,132 @@
-import { useState, useEffect } from "react"
-import { FiArrowRight, FiArrowLeft } from "react-icons/fi"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 
-const slides = [
+// Define the content for each section with consistent information
+const carouselContent = [
   {
-    image: "hero1.jpg",
     title: "Startup IT Consulting",
+    // header: "Startup IT Solutions",
     subtext:
-      "Accelerating startups with innovative IT Consulting for rapid growth where speed meets strategy",
-    ctaPrimary: "Get a Free Consultation",
-    ctaSecondary: "Explore Our Services",
+      "Accelerating startups with innovative IT solutions for rapid growth where speed meets strategy",
+    image: "hero1.jpg",
   },
   {
-    image: "hero2.jpg",
-    title: "Digital Marketing ",
+    title: "Digital Marketing",
+    // header: "Digital Marketing",
     subtext:
       "Scaling startups with data-driven strategies, ROI-focused solutions and flawless execution",
-    ctaPrimary: "Start Your Journey",
-    ctaSecondary: "Learn More",
+    image: "hero2.jpg",
   },
   {
-    image: "hero3.jpg",
     title: "E-commerce Solutions",
+    // header: "E-commerce Solutions",
     subtext:
       "Empowering e-commerce startups to launch, scale, and dominate the market",
-    ctaPrimary: "Book a Demo",
-    ctaSecondary: "View Services",
+    image: "hero3.jpg",
   },
   {
-    image: "hero4.jpg",
     title: "App Development",
+    // header: "App Development",
     subtext:
       "Transforming ideas into high-performance apps, designed for speed and scalability—from concept to MVP in just 4 months",
-    ctaPrimary: "Book a Demo",
-    ctaSecondary: "View Services",
+    image: "hero4.jpg",
   },
 ]
 
-export default function Hero() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isAnimating, setIsAnimating] = useState(false)
+const Hero = () => {
+  // State to track the currently active carousel section
+  const [activeIndex, setActiveIndex] = useState(0)
 
-  const nextSlide = () => {
-    if (!isAnimating) {
-      setIsAnimating(true)
-      setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }
+  // Handler to change the active section when a navigation button is clicked
+  const handleSectionClick = (index) => {
+    setActiveIndex(index)
   }
-
-  const prevSlide = () => {
-    if (!isAnimating) {
-      setIsAnimating(true)
-      setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
-    }
-  }
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsAnimating(false)
-    }, 1000)
-    return () => clearTimeout(timer)
-  }, [currentSlide])
-
-  useEffect(() => {
-    const autoSlideInterval = setInterval(() => {
-      nextSlide()
-    }, 5000)
-
-    return () => clearInterval(autoSlideInterval)
-  }, [currentSlide])
 
   return (
-    <div>
-      <div className="relative overflow-hidden h-[70vh]">
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              currentSlide === index ? "opacity-100" : "opacity-0"
-            }`}
+    // Added bottom padding to create space between sections
+    <div className="relative w-full h-[85vh] flex bg-[#0B0D23] pb-10">
+      {/* Left Content Section */}
+      <div className="w-1/2 flex flex-col justify-center items-start px-16 z-10 relative">
+        <AnimatePresence mode="wait">
+          {/* Animated header with motion effects */}
+          <motion.h1
+            key={carouselContent[activeIndex].header}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.6 }}
+            className="text-white text-4xl font-bold mb-4"
           >
-            {/* Background Image */}
-            <div className="absolute inset-0">
-              <img
-                src={slide.image}
-                alt={slide.title}
-                className="object-cover w-full h-full"
-              />
-              <div className="absolute inset-0 bg-black/50" />
-            </div>
+            {carouselContent[activeIndex].header}
+          </motion.h1>
 
-            {/* Content */}
-            <div className="relative h-full flex items-center justify-center">
-              <div className="container mx-auto px-4">
-                <div className="max-w-4xl mx-auto text-center">
-                  {/* Title with animation */}
-                  <h1
-                    className={`text-4xl md:text-6xl font-bold mb-6 text-white font-serif transform transition-all duration-1000 ${
-                      currentSlide === index && !isAnimating
-                        ? "translate-y-0 opacity-100 scale-100"
-                        : "translate-y-10 opacity-0 scale-95"
-                    }`}
-                  >
-                    {slide.title}
-                  </h1>
+          {/* Animated subtext with motion effects */}
+          <motion.p
+            key={carouselContent[activeIndex].subtext}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-gray-400 text-base mb-6"
+          >
+            {carouselContent[activeIndex].subtext}
+          </motion.p>
+        </AnimatePresence>
 
-                  {/* Subtext with animation */}
-                  <p
-                    className={`text-lg md:text-xl text-gray-200 mb-8 transition-all duration-1000 delay-300 ${
-                      currentSlide === index && !isAnimating
-                        ? "translate-x-0 opacity-100"
-                        : "-translate-x-10 opacity-0"
-                    }`}
-                  >
-                    {slide.subtext}
-                  </p>
-
-                  {/* CTA Buttons with animation */}
-                  <div
-                    className={`space-x-4 transition-all duration-1000 delay-500 ${
-                      currentSlide === index && !isAnimating
-                        ? "translate-y-0 opacity-100"
-                        : "translate-y-10 opacity-0"
-                    }`}
-                  >
-                    <button className="px-8 py-3 bg-white text-gray-900 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                      {slide.ctaPrimary}
-                    </button>
-                    <button className="px-8 py-3 bg-gray-800/50 text-white rounded-lg font-semibold hover:bg-gray-800/70 transition-colors">
-                      {slide.ctaSecondary}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-
-        {/* Navigation Arrows */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
-          aria-label="Previous slide"
+        {/* Learn More Button with hover effect */}
+        <motion.a
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          href="#"
+          className="bg-[#4263eb] text-white px-6 py-3 rounded-md hover:bg-[#3654c7] transition-colors duration-300"
         >
-          <FiArrowLeft size={24} />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
-          aria-label="Next slide"
-        >
-          <FiArrowRight size={24} />
-        </button>
+          Learn More
+        </motion.a>
 
-        {/* Slide Indicators */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-2">
-          {slides.map((_, index) => (
+        {/* Bottom Navigation Section - Integrated with Left Content */}
+        <div className="absolute bottom-0 left-0 flex space-x-4 pb-0 z-20">
+          {carouselContent.map((section, index) => (
             <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                currentSlide === index ? "bg-white w-6" : "bg-white/50"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
+              key={section.title}
+              onClick={() => handleSectionClick(index)}
+              className={`
+                flex flex-col items-center text-center 
+                px-2 py-2 
+                transition-all duration-300 group
+                ${
+                  activeIndex === index
+                    ? "text-white border-b-2 border-[#4263eb] scale-105"
+                    : "text-gray-400 hover:text-white"
+                }
+              `}
+            >
+              <span className="text-base font-semibold uppercase tracking-wider">
+                {section.title}
+              </span>
+            </button>
           ))}
         </div>
       </div>
 
-      {/* New text section below Hero */}
-      <div className="bg-blue-50 text-center py-4 px-4">
-        <p className="text-lg text-gray-800 max-w-4xl mx-auto">
-          Enlinque: Your partner in delivering range of startup solutions that
-          drive success without breaking the budget.
-        </p>
+      {/* Right Side Image Section */}
+      <div className="w-1/2 absolute right-0 top-0 h-full">
+        <AnimatePresence mode="wait">
+          {/* Animated image with motion effects */}
+          <motion.img
+            key={carouselContent[activeIndex].image}
+            src={carouselContent[activeIndex].image}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            className="w-full h-full object-cover"
+            alt={carouselContent[activeIndex].title}
+          />
+        </AnimatePresence>
       </div>
     </div>
   )
 }
+
+export default Hero
