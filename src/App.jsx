@@ -38,11 +38,11 @@ export default function App() {
               path="/fractionalCxO2"
               element={<FractionalCxoPage2 />}
             />
-            <Route
+            {/* <Route
               path="/fractionalCxO3"
               element={<FractionalCxoPage3 />}
-            />
-            <Route
+            /> */}
+            {/* <Route
               path="/services"
               element={<ServicesPage />}
             />
@@ -53,7 +53,7 @@ export default function App() {
             <Route
               path="/services3"
               element={<ServicesPage3 />}
-            />
+            /> */}
           </Routes>
         </main>
         <Footer />

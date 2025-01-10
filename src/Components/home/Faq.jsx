@@ -1,71 +1,36 @@
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { FaQuestionCircle, FaPlus } from "react-icons/fa"
-import { MdCancel } from "react-icons/md"
+import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md"
+import { BsClipboardCheck } from "react-icons/bs"
 
 const FAQItem = ({ title, content, isOpen, onToggle }) => {
   return (
-    <div className="border-l-4 border-blue-600 bg-white shadow-md rounded-lg overflow-hidden mb-4">
-      <motion.div
-        className="p-6"
-        initial={false}
+    <div className="border border-gray-200 rounded-md mb-4 overflow-hidden">
+      <div
+        className="p-4 flex justify-between items-center cursor-pointer bg-white"
+        onClick={onToggle}
       >
-        <div
-          className="flex cursor-pointer items-center justify-between"
-          onClick={onToggle}
-        >
-          <h3 className="text-xl font-semibold text-gray-800 flex items-center gap-3">
-            <FaQuestionCircle className="text-blue-600 text-2xl" />
-            {title}
-          </h3>
-
-          <motion.div
-            animate={{ rotate: isOpen ? 45 : 0 }}
-            transition={{ duration: 0.3 }}
-            className="text-gray-600 hover:text-blue-600"
-          >
-            {isOpen ? (
-              <MdCancel className="text-2xl" />
-            ) : (
-              <FaPlus className="text-2xl" />
-            )}
-          </motion.div>
-        </div>
-
-        <AnimatePresence>
-          {isOpen && (
-            <motion.p
-              initial={{ opacity: 0, height: 0 }}
-              animate={{
-                opacity: 1,
-                height: "auto",
-                transition: {
-                  duration: 0.3,
-                  ease: "easeInOut",
-                },
-              }}
-              exit={{
-                opacity: 0,
-                height: 0,
-                transition: {
-                  duration: 0.3,
-                  ease: "easeInOut",
-                },
-              }}
-              className="mt-4 text-gray-600 leading-relaxed pl-10"
-            >
-              {content}
-            </motion.p>
+        <h3 className="text-lg font-medium text-gray-900">{title}</h3>
+        <div className="text-gray-500">
+          {isOpen ? (
+            <MdKeyboardArrowUp size={24} />
+          ) : (
+            <MdKeyboardArrowDown size={24} />
           )}
-        </AnimatePresence>
-      </motion.div>
+        </div>
+      </div>
+
+      <div
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+          isOpen ? "max-h-96" : "max-h-0"
+        }`}
+      >
+        <div className="px-4 pb-4 text-gray-600 text-base">{content}</div>
+      </div>
     </div>
   )
 }
 
 export default function Faq() {
-  // Commented out to remove auto-opening of first FAQ
-  // const [openIndex, setOpenIndex] = useState(0)
   const [openIndex, setOpenIndex] = useState(-1)
 
   const faqData = [
@@ -109,21 +74,26 @@ export default function Faq() {
   ]
 
   const toggleFAQ = (index) => {
-    setOpenIndex((prevIndex) => (prevIndex === index ? -1 : index))
+    setOpenIndex(index === openIndex ? -1 : index)
   }
 
   return (
-    <div className="bg-gray-50 py-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Get quick answers to common questions about our services, process,
-            and approach.
-          </p>
+    <div className="py-12 bg-gray-50">
+      <div className="max-w-3xl mx-auto px-4">
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <BsClipboardCheck className="w-6 h-6 text-blue-600" />
+          <span className="text-base text-blue-600">Pre-Service Questions</span>
         </div>
+
+        <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
+          Frequently Asked Questions
+        </h2>
+
+        <p className="text-center text-lg text-gray-600 mb-8">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae
+          neque lacinia, mollis ligula quis, hendrerit augue. Aliquam pretium
+          orci sodales, sollicitudin metus pulvinar, condimentum nunc.
+        </p>
 
         <div className="space-y-4">
           {faqData.map((faq, index) => (

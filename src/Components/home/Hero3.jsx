@@ -33,7 +33,7 @@ const carouselContent = [
   },
 ]
 
-const Hero = () => {
+const Hero3 = () => {
   // State to track the currently active carousel section
   const [activeIndex, setActiveIndex] = useState(0)
 
@@ -44,7 +44,7 @@ const Hero = () => {
 
   return (
     // Added bottom padding to create space between sections
-    <div className="relative w-full h-[85vh] flex bg-[#191970] pb-10">
+    <div className="relative w-full h-[85vh] flex bg-[#1434A4] pb-10">
       {/* Left Content Section */}
       <div className="w-1/2 flex flex-col justify-center items-start px-16 z-10 relative">
         <AnimatePresence mode="wait">
@@ -79,7 +79,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           href="#"
-          className="bg-white text-black px-5 py-2 rounded-full hover:bg-[#3654c7] transition-colors duration-300"
+          className="bg-[#4263eb] text-white px-6 py-3 rounded-md hover:bg-[#3654c7] transition-colors duration-300"
         >
           Learn More
         </motion.a>
@@ -129,4 +129,4 @@ const Hero = () => {
   )
 }
 
-export default Hero
+export default Hero3

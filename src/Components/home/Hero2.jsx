@@ -9,7 +9,7 @@ const carouselContent = [
     title: "Startup IT Consulting",
     subtext:
       "Accelerating startups with innovative IT solutions for rapid growth where speed meets strategy",
-    image: "hero1.jpg",
+    image: "hero26.jpg",
     navWord: "Startup",
   },
   {
@@ -17,7 +17,7 @@ const carouselContent = [
     title: "Digital Marketing",
     subtext:
       "Scaling startups with data-driven strategies, ROI-focused solutions and flawless execution",
-    image: "hero2.jpg",
+    image: "hero12.jpg",
     navWord: "Digital",
   },
   {
@@ -64,7 +64,7 @@ const Hero2 = () => {
           />
         </AnimatePresence>
         {/* Blur overlay */}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-none"></div>
+        <div className="absolute inset-0  backdrop-blur-none"></div>
       </div>
 
       {/* Content Container */}
@@ -117,10 +117,10 @@ const Hero2 = () => {
               key={section.navWord}
               onClick={() => handleSectionClick(index)}
               className={`
-                text-sm font-medium uppercase tracking-wider transition-all duration-300
+                text-lg font-bold uppercase tracking-wider transition-all duration-300
                 ${
                   activeIndex === index
-                    ? "text-white border-b-2 border-[#4263eb] scale-110"
+                    ? "text-[#00008B] border-b-2 border-[#4263eb] scale-110"
                     : "text-white hover:text-white"
                 }
               `}
